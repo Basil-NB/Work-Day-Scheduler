@@ -4,27 +4,23 @@
 // in the html.
 var today = dayjs();
 
-var userImput = localStorage.getItem("Imput");
-
 
 $(".saveBtn").on("click", function(){
 var time = $(this).attr("id")
 var text = $(this).siblings("textarea").val()
 localStorage.setItem(time, text)
-}) 
+});
 
+  $("textarea").each(function() {
+    var id = $(this).attr("id");
+    var value = localStorage.getItem(id);
+ 
+    if (value !== null) {
+      $(this).val(value);
+    }
+  });
 
-$(function curentTime(hour) {
-  if (moment().isAfter(hour)) {
-    return 'future';
-
-} else if (moment().isBefore(hour)) {
-    return 'past';
-
-} else  {
-    return 'present';
-}
-
+$(function curentTime() {
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
@@ -32,12 +28,7 @@ $(function curentTime(hour) {
   //
 });
 
-$(function () {
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
 
-});
 
 $(function displayTime() {
 $('#currentDay').text(today.format('dddd, MMMM D'));
