@@ -1,14 +1,18 @@
 
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 var today = dayjs();
 
+$(function displayTime() {
+  $('#currentDay').text(today.format('dddd, MMMM D'));
+  });
+
+$(document).ready(function() {
+  updateTimeBlockClass();
+});
 
 $(".saveBtn").on("click", function(){
-var time = $(this).attr("id")
-var text = $(this).siblings("textarea").val()
-localStorage.setItem(time, text)
+var time = $(this).attr("id");
+var text = $(this).siblings("textarea").val();
+localStorage.setItem(time, text);
 });
 
   $("textarea").each(function() {
@@ -20,16 +24,22 @@ localStorage.setItem(time, text)
     }
   });
 
-$(function curentTime() {
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-});
+  function updateTimeBlockClass() {
+    var currentHour = dayjs().hour();
+  
+    $(".time-block").each(function() {
+      var timeBlockHour = parseInt($(this).attr("id").split("-")[1]);
+  
+      if (timeBlockHour < currentHour) {
+        $(this).addClass("past");
+      }
+      else if (timeBlockHour === currentHour) {
+        $(this).addClass("present");
+      }
+      else {
+        $(this).addClass("future");
+      }
+    });
+  }
 
-
-
-$(function displayTime() {
-$('#currentDay').text(today.format('dddd, MMMM D'));
-});
+  
