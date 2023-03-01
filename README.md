@@ -7,5 +7,8 @@ this application functions as a scedual for planning events throughout your work
 
 ## Installation
 
-you can use this application by visiting this url: 
+you can use this application by visiting this url: https://basil-nb.github.io/Work-Day-Scheduler/ 
+
+
+
 
